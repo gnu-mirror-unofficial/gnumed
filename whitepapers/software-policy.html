@@ -1,0 +1,712 @@
+<!DOCTYPE public "-//w3c//dtd html 4.01 transitional//en" 
+		"http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+	<TITLE>Guidelines for health software purchase and
+contracting</TITLE>
+	<META NAME="AUTHOR" CONTENT="Dr. Horst Herb">
+	<META NAME="CREATED" CONTENT="20030214;14304600">
+	<META NAME="CHANGEDBY" CONTENT="Dr. Horst Herb">
+	<META NAME="CHANGED" CONTENT="20030218;19243300">
+</HEAD>
+
+<BODY>
+
+<H1>Guidelines for health software purchase and
+contracting in the context of government subsidised projects</H1>
+
+<P>The benefits of computerized health records are indisputable, and
+further benefits are expected from the implementation of computerized
+decision support. However, current systems are only implementing a
+small fraction of the potential benefits. The government has been
+called upon to finance development of software projects aiming at
+improving health outcome and saving costs to the health system.</P>
+<P>However, there are no guidelines as to which projects to support,
+under what conditions. So far, ?? Australian taxpayers dollars have
+been spent on ?? projects, arguably without any major tangible
+outcome. While each project in itself may have its merits, the lack
+of interoperability and reuseability reduced the long term benefits
+of such software close to zero. Since virtually all projects
+purchased or commissioned software without getting access to its
+source code, that software cannot even serve for learning purposes
+for our upcoming generations of health informaticians. We may conclude 
+that most of the project money spent so far on software has been wasted.</P>
+<P>Current common practice is to put a software project to tender,
+and have a small set of end user specfications implemented by a
+vendor. Typically, implementation details are not specified and
+source code remains property of the vendor. Even in the few cases 
+where the public ownership of the source code
+was specified in the contract, the tender missed to specify that avalability
+of source code needs to extend to 3rd party libraries and all non-replaceable 
+software tools. (The software must be extensible and maintainable without
+any requirements for proprietary 3rd party libraries or tools).
+</p>
+<p>
+In the worst case,
+monopolies are fostered by the choice of vendors which misuse such
+publically funded projects in order to lock customer into their
+proprietary solutions, effecively not only depriving customers of a
+choice but also choking the competition which might have been able to
+offer better alternatives in the future. 'Once a customer is &quot;locked
+into&quot; proprietary software, its makers can demand premium
+prices, safe in the knowledge that the client would find it even more
+expensive to change' [1,2]</P>
+<p>It is also essential to involve clinicians throughout all phases of planning and
+decision making regarding health related software:<br>
+"Health care IT is led almost exclusively 
+by commercial vendors and health care corporate management information services (MIS) 
+departments. There is a poverty of clinician leadership.<br>
+Even medical informaticists, clinicians ideally qualified to provide such leadership, 
+often find themselves poorly accepted in vendor and MIS shops. This may be due to 
+territorial issues, cultural differences, and methodological differences. 
+One such methodological difference is <b><i>the clinician's favoring of a participatory 
+approach to application development</i></b>, which represents a significant departure from 
+traditional information system design.This may make those in industry or MIS uncomfortable." 
+[25,26]</p>
+<P>In order to maxmize benefits from publicly funded software, a
+minimum policy should be implemented. This document is aiming at
+providing a rationale for such a policy.</P>
+<hr>
+<H2>Features desirable for all software projects</H2>
+	<h3>Interoperability:</h3>
+	in health informatics, there will
+	rarely be a case where a specific piece of software will be useful
+	in isolation. In virtually all cases, maximum benefit can be
+	achieved by integrating software modules into a larger architecture. <br>
+	To that purpose, software needs to be designed modular with well
+	defined interfaces. It is desirable to achieve interoperability across
+	different platforms; for that purpose, only open standards for 
+	inter-component communication should be used
+	<h3>Reusability:</h3>
+	In order to maximise reusability, the source code 
+	has to be open and portable. This will not only allow other developers to 
+	benefit from an already existing code base and thus decrease costs of 
+	future projects, but it will also allow students to learn from an existing
+	code base. It will facilitate an evolutionary development process which is
+	likely to lead to better code quality and interoperability as well. Having to 
+	"reinvent the wheel" repeatedly is counterproductive. Open and portable code
+	will prevent both vendor lock-in as well as vendor driven premature obsolescence.
+	<h3>Standard compliance:</h3>
+	Whenever useable standards exist, no attempt should be made at using or even developing 
+	a proprietary 
+	solution instead. Should existing standards not cover the needs completely, it is
+	preferrable to extend existing standards or, even better, to influence the
+	standard body to adopt proposed extensions into a new revision of that standard.
+<br>
+<hr>
+<h2>The 6 steps towards a good software tender</h2>
+In order to achieve the goals of interoperability, reusability, and standard compliance 
+the contract needs to be drafted accordingly. Of course, all common contract issues such as 
+goal specifications, budget,default handling etc. need to be considered. This is usually no problem,
+since anybody used to drafting contracts will know how to do this.<br>
+However, in the case of publicly funded software, there are a few extra requirements that are essential
+as well: no contract should be put to tender which doesn't specify in detail <i>all</i> of the following
+issues:
+<ol>
+	<li><b>Which license for the end product?</b><br>
+	The license will ultimately determine the long term value of any software
+	</li>
+	<li><b>What platform shall be supported?</b><br>
+	It is unwise to restrict the choice of platform artificially without good reason.
+	</li>
+	<li><b>What programming languages and software tools can be used?</b><br>
+	The choice of development tools has a major impact on interoperability and reusability 
+	</li>
+	<li><b>What API and/or RPC interface is to be used?</b><br>
+	Standardised APIs and RPC interfaces will increase interoperability
+	and reuseability dramatically.
+	</li>
+	<li><b>Which existing components are to be reused or extended?</b><br>
+	Reuse of existing components fosters standards and saves money
+	</li>
+	<li><b>What standards are to be used?</b><br>
+	The choice of standard is essential for interoperability
+	</li>
+</ol>
+The rest of this document intends to clarify these six core issues. It will be highlighted why these
+issues are important, and advice will be given regarding relevant software contract specifications.
+
+<hr>
+
+<H2>The choice of license</H2>
+
+<H3>Why it matters:</H3>
+	The license will
+	ultimately determine who will benefit from a software product. When a
+	project is put to tender spending public money, a license should be
+	chosen that will maximise the taxpayers benefit.
+	
+<H3>What different licensing schemes are available?	</h3>
+<ol>
+	<LI><b>'closed source' licensing scheme:</b> The contractor preserves all rights on the software and
+	sells licenses to the end user. The end user has no rights nor
+	possibility to modify the software. There are three possible
+	alternatives, each with an optional escrow clause:
+	
+	<OL>
+		<LI> <b>purchase scheme:</b> the user pays once for unlimited rights of use as
+		outlined in the software purchase contract.
+		The user has no rights of redistribution nor modification
+		<LI><b>subscription scheme:</b> the user has
+		rights of use for a determined period of time, after which the he
+		has to renew the license or cease usage
+		<LI><b>closed source public domain release:</b> the user has unlimited 
+		rights of use and redistribution, but no facilities for modifying, porting,
+		or improving the software.
+	</OL>
+	<br>
+	<li><b>source escrow:</b> the vendor deposits
+	the source code and developer documentation with a trusted third
+	party. The licensing agreement determines when and under which 
+	conditions this source code is to be released. Otherwise, this
+	license works as the closed source licensing schemes
+	</li>
+	<br>
+	<li><b>open source licensing:</b>
+	the contractor has to surrender intellectual property, but may
+	retain copyright. There is a large number of possible schemes.
+	Examples for often used or discussed schemes are:
+	<ol>
+		<LI><b>BSD style license:</b>Redistribution and use in source and binary forms, 
+		with or without modification, are permitted provided that a number of conditions are met,
+		often including an advertising clause
+		</li>
+		<LI><b>GPL style license:</b> the copyright
+		remains with the original owner, but the user is granted all rights
+		to modify and redistribute the software under the provison that
+		derived/redistributed products and/or products using this software
+		in any other direct way are licensed under the same
+		licensing scheme.</li>
+		<LI><b>LGPL style license:</b> basically the
+		same as GPL, but this license is not 'contagious': it requires same
+		licensing (LGPL) only for derivatives or direct redistributions.</P>
+		<LI><b>'shared source':</b> some or all of the source code is released
+		in a discriminative way, but the vendor prohibits any
+		modifications or redistribution.</P>
+	</ol>
+</ol>
+<h3>Advantages of closed source licenses:</h3>
+for the customer, there are none at all, since any perceived
+advantage is also available for open source licenses as well. 
+An exeption wold be a slightly lower initial purchasing cost if
+the vendor intends to resell the software to multiple oher customers.
+However, this usually marginal cost reduction is almost always offset
+by the lost investment factor, since such software cannot be reused or 
+extended. Hence, all advantages of closed source software are unilaterally 
+with the vendor. Thus, it is not in the taxpayers
+interest to invest in closed source software.
+<h3>Disadvantages of closed source software licenses:</h3>
+Closed source software is typically limited to only one
+platform or a small number of platforms. The end user is deprived of
+choice regarding hardware and operating system. Problems arise with
+virtually any hard-and/or software upgrade where the user is at the
+mercy of the vendor who may or may not provide a suitable upgrade.
+There is ample evidence of the disastrous consequences of closed
+source software licensing for large scale governmental projects
+[1...]
+
+<P>Further problems arise when it comes to
+system integration. Typically, closed source software lacks well
+defined APIs or RPC interfaces that would facilitate integration.
+Should the need for integration arise, there is no option for the
+licensee to implement the neccessary changes.Even where such API
+or RPC interface exists, the fact that it cannot be modified pre-programs
+artefactual obsolescence which cannot be in the interest of the user
+</P>
+<P>Closed source software also stiffles
+and distorts competition, since competitors will suffer from the same
+restrictions as the licensee, and thus will be unable to provide a
+customer with a better / distinctive service for that particular
+product.
+</P>
+<p>While Microsoft's proposal of "shared code" will allow limited
+peer review of security sensitive code and, under certain circumstances, also
+allow implementation of interfaces, it is generally regarded as a mere
+publicity stunt without any real benefit to the customer [7]</p>
+
+<h3>Advantages of open source licenses</h3>
+At first glance all advantages appear to be with the customer, who can 
+<ul>
+<li>inspect the code for errors and specification compliance</li>
+<li>reuse or extend the code for related projects</li>
+<li>contract a different vendor/developer for further development
+or ongoing maintenance when need arises</li>
+<li>scrutinize the code for security loopholes</li>
+<li>port the code to different platforms</li>
+</ul>
+However, there are also numerous benefits to vendors:
+<ul>
+<li>they can benefit too from an existing pool of open sourced modules</li>
+<li>they can prove compliance with specifications and security demands</li>
+<li>small business will have equal opportunities for tasks adequate to the 
+business size: not all vendors see competition negative</li>
+</ul>
+<h3>Disdvantages of open source licenses</h3>
+The main disadvantage is for the vendor, since he cannot exert vendor lock-in
+maneuvres with open source software. Open source licensing effectively
+breaks monopolies. However, for the customer this is always an advantage.
+<p>People unfamiliar with IT security might perceive open code as an invitation
+for hackers; those without in depth security knowledge often assume that
+obscurity can provide security. This assumption has been proven wrong repeatedly.
+It is now commonly accepted in professional circles that peer review is a
+requirement for security. It is no coincidence that closed source companies
+like Microsoft have a disastrous security record track.</p>
+<p>Purchasing the full so called intellectual property in the form of source code
+might incur extra costs. These extra costs need to be weighed against the expected benefits.
+As a rule of thumb one might expect that minor projects require that little funding that
+the extra costs are too small to matter, and large projects would cost too much anyway
+to allow a lost investment in the form of closed source software, so that again the extra 
+costs (if any) for the disclosure of the source code would be worthwile in the long term</p>
+<h3>Recommendation regarding choice of software licensing scheme:</h3>
+The recommendation to be made is clear:
+<i>closed source licensing schemes are to be avoided</i>. They are generally
+unacceptable in security sensitive applications since they do not allow peer
+review. Closed source software is more often than not a lost investment, since
+it can rarely be reused or extended nor adapted when interoperability requires it.
+Even if purchasing the source code and related rights might cost more initially, 
+this one off cost is likely to be more than balanced by the long term benefits.
+
+<hr>
+
+<h2>The choice of language</h2>
+<H3>Why it matters:</H3>
+Software is written in human readable "computer languages". Some of these languages
+are standardized and well defined (Examples: C, C++, Pascal). Others are proprietary 
+(MS Visual Basic). Few languages are somewhere in between, like Java, where a single 
+vendor instead of a standards body reserves the right of defining which implementation 
+is valid.
+<p>Generally spoken, proprietary languages are to be avoided: they are unlikely to
+have any longevity suitable for long term software maintenance, they are usually not
+available on a variety of platforms, and they generally lead to vendor lock-in</p>
+<p>The choice of computer language for any one project is very important. It will
+determine the time span code will remain reuseable if useable at all. It will determine
+how well a module will integrate with modules written in other languages, and it will
+most certainly determine portability. The likelihood of attracting skilled developers
+at reasonable costs entirely depends on the choice of programming language - a factor
+which is often ignored when starting a project.</p>
+
+<h3>Which language for what purpose?</h3>
+<p>Not all languages serve equally well for all purposes. It is not always possible to
+limit any one project to one programming language only. It is generally accepted that the
+use of very high level programming languages leads to faster development cycles, better
+reusability of components, and more robust end products. However, performance or hardware 
+specific parts often depend on so called low level languages. It is therefore important to 
+not only select "good" languages, but also to pay attention as to how well the chosen languages
+will interact and integrate</p>
+
+<p>Following table provides a small selection of programming languages particularly suitable for 
+publicly funded projects</p>
+
+<table cellpadding="2" cellspacing="2" border="1"
+ style="text-align: left; width: 100%;">
+  <tbody>
+    <tr>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">language<br>
+      </th>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">level<br>
+      </th>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">portability<br>
+      </th>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">ease
+of use<br>
+      </th>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">performance<br>
+      </th>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">popularity<br>
+      </th>
+      <th
+ style="vertical-align: top; background-color: rgb(255, 255, 153);">comment<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">ANSI-C<br>
+      </td>
+      <td style="vertical-align: top;">low<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">for hardware drivers and number
+crunching<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">C++<br>
+      </td>
+      <td style="vertical-align: top;">high<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">+<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">standard still unstable<br>
+      </td>
+    </tr>
+	    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">Pascal<br>
+      </td>
+      <td style="vertical-align: top;">high<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">standard version rarely used<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">Modula-2<br>
+      </td>
+      <td style="vertical-align: top;">high<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">dying?<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">Modula-3<br>
+      </td>
+      <td style="vertical-align: top;">very high<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">dying?<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">Java<br>
+      </td>
+      <td style="vertical-align: top;">very high<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">future unclear due to SUN
+dependence<br>
+      </td>
+    </tr>
+<tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">PHP<br>
+      </td>
+      <td style="vertical-align: top;">very high<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">for web pages<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">Eiffel<br>
+      </td>
+      <td style="vertical-align: top;">very high<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">+++<br>
+      </td>
+      <td style="vertical-align: top;">-<br>
+      </td>
+      <td style="vertical-align: top;">very 'safe', but rarely used<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;" bgcolor="#ffffcc">Python<br>
+      </td>
+      <td style="vertical-align: top;">very high<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">++++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">++<br>
+      </td>
+      <td style="vertical-align: top;">easy, safe and embeddable<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Legend:<br>
+<ul>
+  <li>level: refers to level of abstraction. The higher the level, the
+faster the development and the more robust ("bug free") the resulting
+code.</li>
+  <li>portability: refers to both availability of development tools on
+different platforms as well as portability of source code across
+platforms</li>
+  <li>ease of use: closely related to the level of a language, but
+taking ease of learning, readability of source code and
+autodocumentation features into account</li>
+  <li>performance: typical execution speed of a variety of tasks</li>
+  <li>popularity: likelihood of a programming language to be known and
+used by an average programmer<br>
+  </li>
+</ul>
+<p>A few languages which might appear suitable at first glance have been left out on purpose:
+<ul>
+	<li><b>Perl:</b> while the Perl language is highly popular among web developers and text 
+	processing script writers, it has often rightfully been described as "read only" language.
+	Perl does not encourage writing readable source code, and thus makes cooperation on 
+	larger projects very difficult. Wherever Perl is suggested, it should be replaced by Python or PHP
+	in order to facilitate code readabilty and maintainability. </li>
+	<li><b>Smalltalk:</b> not widely implemented, very ressource hungry, few developers using it</li>
+	<li><b>MS Visual Basic:</b> while both popular and easy to learn, it is entirely unportable and has a very
+	uncertain future.</li>
+</ul></p>
+
+<p><b>C++</b> is certainly a good choice for most software projects due to it's popularity, excellent
+performance and availability of vast libraries. However, since it does not enjoy the same degree of
+abstraction as other proposed languages, development is likely to take longer and cost significantly more
+than development with higher level languages.</p>
+<p>While <b>Java</b> often seems a good candidate for portable publicly funded software project, SUN's stronghold
+on the language in the context of SUN's unclear future together with a wildly growing complexity
+of libraries without backwards compatibility make Java increasingly less future proof. However, it is still
+often preferred in academic environments, and there is no shortage of Java capable developers. The main
+benefit is probably a stable standardized cross platform user interface library, which at the same
+time is a major drawback when users lack the "look and feel" they are accustomed to from their
+preferred platform</p>
+<p><b>Eiffel</b> could be an ideal language if it would not suffer from vendor driven library incompatibilities and 
+lack of developers with Eiffel knowledge. Due to the lack of popularity, there is also a lack of
+generally available libraries, though this problem can be overcome by wrapping C/C++ libraries for Eiffel</p>
+<p><b>PHP</b> is probably best suited for web projects, the domain where it enjoys greatest popularity anyway. While 
+it is available as general purpose interpreted language, it cannot match Python in terms of performance,
+ease of use, robustness and readability of code for that purpose</p>
+<p>In my opinion, <b>Python</b> offers the best balance of all desirable features. There is a plethora of robust
+high level libraries for most common problems including cross platform user interface toolkits providing a 
+native "look ad feel" on most platforms. Performance bottlenecks can be solved by either writing 
+performance sensitive parts in C or C++, or by writing the main stub in C/C++ and then embedding Python.It 
+is worth mentioning that one version of Python called "Jython" has been implemented entirely in Java, 
+allowing easy integration of Python and Java modules and full access to all Java libraries from Python.</p> 
+<p><b>Python</b> is one of the few "pure academic" languages apart from Pascal that made it into the mainstream. Despite
+no commercial entity backing it up officially, it's popularity has increased in an explosive way. Serious 
+business such as the NASA, the web search engine Google and the National Institute of Health 
+use Python for critical tasks. An increasing number of "programming gurus" favour Python 
+(Quoting Bruce Eckel [9], author of the best selling text books 
+"Thinking in C++" and "Thinking in Java": "Considering that Python is my language of choice for virtually 
+all my own programming projects, my research into the language is continuing apace"[27]. Or, quoting another
+IT icon, Eric S. Raymond: "For anything larger or more complex, I have come to prefer the subtle virtues 
+of Python -- and I think you will, too." [9])</p>
+
+<hr>
+
+<h2>The choice of software tools</h2>
+Software development often depends on specific software tools and third party software libraries.
+<h3>Why it matters</h3>
+The choice of tools and libraries strongly influences programming style, and thus maintainability and reusability 
+of software.<br>
+Not all developers are equally comfortable with all tools. Being able to recruite suitable
+developers is often a matter of providing the right tools. Development speed can depend
+significantly on the choice of tools. 
+Some vendors abuse software tools as a mechanism of imementig vendor lock-in even if the tools
+are used for open standard programming languages. These tools typically enforce tool-specific programming
+styles, making it very difficult to migrate to different tools for the same purpose (Example:
+MS Visual Studio).<br>
+<p>
+Licensing and source code availability of third party software libraries is a most important issue that 
+is commonly overlooked: the wrong license and unavaibility of source code can render a whole project
+unreusable and unmaintainable unless significant further deelopment costs are spent on replacing these
+third party libraries.
+</p>
+<p>It is worth mentioning that two of the major Australian software projects are said to suffer 
+difficulties with product adoption and project progress because of their choice of software tools 
+and libraries:
+<ul>
+	<li>The "Argus" project is using Borland's "JBuilder", a proprietary integrated development tool
+	which encourages use of non-standard third party libraries (namely Borland's own). This has alienated 
+	them from volunteers from the free software community who could have helped to reduce development
+	costs and accelerated the testing/debugging cyclus significantly. Use of these libraries also results in lesser
+	flexibility and doubtful long term maintainability.
+	</li>
+	<li>The "GEHR" project has chosen to rely on proprietary extensions and class libraries to the
+	Eiffel language - a language which itself is not used very often in the first place, despite it's
+	doubtless merits. The initial implementation relied on a propritary object database module ("POET")
+	which made it impossible for the community to test the product and to get used to it that way. The
+	costs associated with the chosen tools made it impossible for volunteers to join development -
+	volunteers who would have been crucial for a chronically underfunded project</li>
+</ul>
+
+</p>
+It should be a general requirement that
+<ul>
+	<li>no specific development tool should be allowed unless it is replaceable with at least one other software tool of
+	which the long term availability is guaranteed. The latter applies obviously only to tools where the source 
+	code is available.<br>
+	Example: A developer may chose the proprietary "Microsoft Visual C++" as development tool as long
+	as he produces ANSI compliant C++ code and portable makefiles
+	</li>
+	<li>no third party code should be allowed unless it's license allows full transferable ownership and
+	full availability of source code. Third party libraries should not compromise portability</li>
+	<li>before any decisions are made regarding software tools and libraries, extensive research on
+	available free tools and libraries should be performed. Not knowing about existing time proven
+	free tools and librares has wasted fortunes (Example: HeSA's decision to purchase cryptographic
+	modules despite avialbility of free fully tested cryprographic libraries such as OpenSSL)</li>
+</ul>
+
+<hr>
+
+<h2>Conclusions</h2>
+In order to maximize the benefit obtained for taxpayers money, any software contract should
+clarify the following on top of the usual project specifications:
+<ol>
+	<li><b>choice of license:</b> preferrably GPL</li>
+	<li><b>choice of architecture:</b> modular portable design</li>
+	<li><b>choice of platform:</b> preferrably portable, no unneccessary platform restrictions</li>
+	<li><b>choice of language:</b> preferrably a high level, open standard language 
+	(Examples: Python, Eiffel, C++, (Java), PHP) whenever hardware and performance allow it</li>
+	<li><b>choice of tools:</b> preferrably no need for proprietary tools 
+	(use of proprietary tools for convenience is allowable as long as these tools are not indispensible
+	for building, maintaining or extending this software )</li>
+	<li><b>choice of interface:</b> well formulated API, and preferrably standard cross platform interfaces
+	and protocols like XML-RPC, SOAP or CORBA</li>
+	<li><b>choice of standards:</b> whenever any aspect of the software can be implemented through 
+	or make use of an approved standard, this standard has to be used</li>
+	<li><b>choice of 3rd party software / toolkits:</b> Existing software modules that comply with all 
+	of the above should be reused, extended or modified in preference to re-developing. Software products
+	not compliant with the stated specifications should no be used at all.</li>
+</ol>
+<hr>
+<h2>References:</h2>
+<P>[1] Carnall,D. Medical software's free future. BMJ 2000;321:976  (Editorials)<br>
+(<A HREF="http://bmj.com/cgi/content/full/321/7267/976?ijkey=.qT.1r1/lkV1s">http://bmj.com/cgi/content/full/321/7267/976?ijkey=.qT.1r1/lkV1s</A>)
+</P>
+<P>[2] Shapiro C, Varian HR. Information
+rules: a strategic guide to the networked economy. Boston, MA:
+Harvard Business School Press, 1999. 
+</P>
+<p>[3] The GNU General Public License (GPL) <br>
+(http://www.gnu.org/licenses/gpl.html)</p>
+<p>[4] The Lesser GNU General Public License (LGPL)<br>
+(http://www.gnu.org/licenses/lgpl.html)</p>
+<p>[5] BSD (Berkely based)style licenses<br>
+(http://www.xfree86.org/3.3.6/COPYRIGHT2.html#6)</p>
+<p>[6] Micrososft's shared source proposal <br>
+(http://www.microsoft.com/licensing/sharedsource/)</p>
+<p>[7] Shared Source - a dangerous virus <br>
+(http://www.opensource.org/advocacy/shared_source.php)</p>
+<p>[8] The Python Programming Language <br>
+(http://www.python.org/)</p>
+<p>[9] Eris S. Raymond: Why Python <br>
+(http://pythonology.org/success&story=esr)</p>
+<p>[10] Python Success Stories<br>
+(http://pythonology.org/success)</p>
+<p>[11] Python Business Success Stories<br>
+(http://www.python-in-business.org/success)</p>
+<p>[12] Jython - A Java Implementation of the Python Programming Language <br>
+(http://www.jython.org/)</p>
+<p>[13] The Perl Programming Language<br>
+(http://www.perl.com/CPAN-local/README.html)</p>
+<p>[14] The Java Programming Language<br>
+(http://java.sun.com/)</p>
+<p>[15] The Eiffel Programming Language<br>
+(http://www.eiffel.com/)</p>
+<p>[16] The PHP Programming Language<br>
+(http://www.php.net/)</p>
+<p>[17] Bjarne Stroustrup: The C++ Programming Language<br>
+(http://www.research.att.com/~bs/C++.html)</p>
+<p>[18] B. Kernighan, D.Ritchie: The C Programming Language <br>
+(http://cm.bell-labs.com/cm/cs/cbook/)</p>
+<p>[19] Douglas Clement: Creation Myths - Does innovation require intellectual property rights?<br>
+(http://www.reason.com/0303/fe.dc.creation.shtml)</p>
+<p>[20] Eric S. Raymond: The Cathedral And The Bazaar<br>
+(http://www.cis.ohio-state.edu/~rountev/757/html/raymond/)</p>
+<p>[21] Bruce Eckel: Thinking in C++ / Thinking in Java <br>
+(http://www.mindview.net/Books)</p>
+<p>[22] Michele Boldrin, David K. Levine: The Case Against Intellectual Property<br>
+(http://levine.sscnet.ucla.edu/papers/intellectual.pdf)</p>
+<p>[23] BMJ News roundup: NHS misses target for introducing electronic records<br>
+(http://bmj.com/cgi/content/full/324/7342/870/b)</p>
+<p>[24] Ten ways to improve information technology in the NHS ? Commentary: improve the quality of the consultation ? Commentary: Clinical focus might make it work
+  Azeem Majeed, Simon de Lusignan, and Sheila Teasdale BMJ 2003; 326: 202-206<br>
+(http://bmj.com/cgi/content/full/326/7382/202)</p>
+<p>[25] JAMA letters: Barriers to Computerized Prescribing (S. Silverstein)<br>
+(http://jama.ama-assn.org/issues/v280n6/ffull/jlt0812-2.html)</p>
+<p>[26] Sjoberg C, Timpka T. Participatory design of information systems in health care. 
+J Am Med Inform Assoc. 1998;2:177-183.</p>
+<p>[27] Bruce Eckel: Thinking in Python<br>
+(http://www.mindview.net/Books/Python/ThinkingInPython.html)</p>
+<p>[28] <br>
+()</p>
+<p>[29] <br>
+()</p>
+
+<br>
+<hr>
+<h2>Glossary</h2>
+<ol>
+<li>API: Application Programming Interface. Allows developers to extend and reuse existing code without modifying it.</li>
+<li>RPC: Remote Procedure Call. Allows to execute procedures on arbitrary computers.</li>
+</ol>
+<hr>
+<h2>Acknowledgements</h2>
+<i>
+This document was authored exclusively using free software. 
+The HTML pages were written using Quanta (http://quanta.sourceforge.net/).
+The PDF document was generated automatically from HTML using the html2ps 
+(http://www.tdb.uu.se/~jan/html2ps.html)script to generate PostScript code
+whcih then was translated into PDF using the ps2pdf (http://stat.tamu.edu/doc/gs/Ps2pdf.htm)script.
+<br>
+The web was browsed for references using 
+Konqueror (http://www.konqueror.org) and Mozila (http://www.mozilla.org). Emails were written and read 
+on KMail (http://kmail.kde.org), sent and received via the qmail SMTP server (http://qmail.org).
+<br>
+Versions were tracked and managed using CVS (http://www.cvshome.org), and incremental backups were
+performed using rsync (http://www.rsync.org).
+<br>
+All software was running on a Debian Gnu/Linux system (http://www.debian.org, http://gnu.org)
+using the KDE 3.1 graphical user interface and desktop management suite (http://www.kde.org).
+<br>
+It is worth noting that all software used itself was generated without using any proprieatry
+software at all in the whole development and build process, mainly relying onto the GNU toolchain (http://gnu.org).
+<br>
+The original of this web page document is displayed via the Apache web server (http://www.apache.org)
+running on a freeBSD operating system (http://www.freebsd.org)
+</i>
+</BODY>
+</HTML>
