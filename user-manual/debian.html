@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Obtaining Gnumed software</TITLE
+>Debian specific requirements</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
@@ -13,11 +13,11 @@ REL="UP"
 TITLE="Installation"
 HREF="installation.html"><LINK
 REL="PREVIOUS"
-TITLE="Installation"
-HREF="installation.html"><LINK
-REL="NEXT"
 TITLE="Linux Installation"
-HREF="linux.html"></HEAD
+HREF="linux.html"><LINK
+REL="NEXT"
+TITLE="Mandrake- GnuMed on Mandrake 9.1"
+HREF="mandrake.html"></HEAD
 ><BODY
 CLASS="SECT1"
 BGCOLOR="#FFFFFF"
@@ -45,7 +45,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="installation.html"
+HREF="linux.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -59,7 +59,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="linux.html"
+HREF="mandrake.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -73,68 +73,62 @@ CLASS="SECT1"
 ><H1
 CLASS="SECT1"
 ><A
-NAME="OPTAINING-GNUMED"
->2.1. Obtaining Gnumed software</A
+NAME="DEBIAN"
+>2.3. Debian specific requirements</A
 ></H1
 ><P
->The latest sources are available by CVS at 
-<A
-HREF="http://savannah.gnu.org/projects/gnumed/"
-TARGET="_top"
-><I
-CLASS="CITETITLE"
->savannah.gnu.org</I
-></A
->.
-If CVS asks for a password, use a blank line. The module name is 
-<EM
->gnumed</EM
+>This is what is known to work on Debian as of late</P
+><P
+>Son 01 Dez 2002 11:54:06 CET  <CODE
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:gouchi@altern.org"
+>gouchi@altern.org</A
+>&#62;</CODE
 ></P
 ><P
->Qouting from GnuMed's CVS instruction</P
+>I have reinstalled Gnumed on Debian Woody (2.4.18-bf2.4), and this the list of package, I have installed, if he can help:
+	    <P
+></P
+><UL
+><LI
 ><P
->	"This project's CVS repository can be checked out through anonymous (pserver) CVS with the following instruction set. The module [<EM
->gnumed</EM
->]  you wish to check out must be specified as the modulename. When prompted for a password for anoncvs, simply press the Enter key.
-	    </P
+>egenix-mx-base-2.0.4.tar.gz</P
+></LI
+><LI
 ><P
->You would type:</P
-><TABLE
-BORDER="1"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><FONT
-COLOR="#000000"
-><PRE
-CLASS="SCREEN"
->Source tree: cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnumed login
-	</PRE
-></FONT
-></TD
-></TR
-></TABLE
+>libwxgtk2.3-python_2.3.3.2_i386.deb</P
+></LI
+><LI
 ><P
->Remeber to hit enter when it asks for a password. Then type:</P
-><TABLE
-BORDER="1"
-BGCOLOR="#E0E0E0"
-WIDTH="100%"
-><TR
-><TD
-><FONT
-COLOR="#000000"
-><PRE
-CLASS="SCREEN"
->cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnumed co gnumed
-	</PRE
-></FONT
-></TD
-></TR
-></TABLE
+>libwxgtk2.3_2.3.3.2_i386.deb</P
+></LI
+><LI
 ><P
->You should then see the cvs directory download into a gnumed directory</P
+>postgresql-7.2.3.tar.gz</P
+></LI
+><LI
+><P
+>pypgsql-2.3.tar.gz</P
+></LI
+><LI
+><P
+>python2.2-dev_2.2.1-4_i386.deb</P
+></LI
+><LI
+><P
+>python2.2-egenix-mxdatetime_2.0.3-3.2_i386.deb</P
+></LI
+><LI
+><P
+>python2.2-egenix-mxtools_2.0.3-3.2_i386.deb</P
+></LI
+><LI
+><P
+>python2.2_2.2.1-4_i386.deb</P
+></LI
+></UL
+></P
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -152,7 +146,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="installation.html"
+HREF="linux.html"
 ACCESSKEY="P"
 >Prev</A
 ></TD
@@ -170,7 +164,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="linux.html"
+HREF="mandrake.html"
 ACCESSKEY="N"
 >Next</A
 ></TD
@@ -180,7 +174,7 @@ ACCESSKEY="N"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Installation</TD
+>Linux Installation</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
@@ -194,7 +188,7 @@ ACCESSKEY="U"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Linux Installation</TD
+>Mandrake- GnuMed on Mandrake 9.1</TD
 ></TR
 ></TABLE
 ></DIV

@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML
 ><HEAD
 ><TITLE
@@ -8,6 +9,9 @@ CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
 REL="HOME"
 TITLE="GNUMed"
 HREF="index.html"><LINK
+REL="UP"
+TITLE="Administration: Installation and Configuration"
+HREF="administration.html"><LINK
 REL="PREVIOUS"
 TITLE="Introduction"
 HREF="intro.html"><LINK
@@ -33,7 +37,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->GNUMed: </TH
+>GNUMed: User's Manual</TH
 ></TR
 ><TR
 ><TD
@@ -92,97 +96,139 @@ HREF="linux.html"
 ><DL
 ><DT
 >2.2.1. <A
-HREF="linux.html#AEN69"
+HREF="linux.html#AEN91"
 >Distrubutions 'supported'</A
 ></DT
 ><DT
 >2.2.2. <A
-HREF="linux.html#AEN148"
+HREF="linux.html#AEN170"
 >Requirements</A
 ></DT
 ><DT
 >2.2.3. <A
-HREF="linux.html#AEN220"
+HREF="linux.html#AEN238"
 >Postgresql</A
 ></DT
 ><DT
 >2.2.4. <A
-HREF="linux.html#AEN263"
+HREF="linux.html#AEN275"
 >Running GnuMed</A
 ></DT
 ></DL
 ></DD
 ><DT
 >2.3. <A
+HREF="debian.html"
+>Debian specific requirements</A
+></DT
+><DT
+>2.4. <A
+HREF="mandrake.html"
+>Mandrake- GnuMed on Mandrake 9.1</A
+></DT
+><DD
+><DL
+><DT
+>2.4.1. <A
+HREF="mandrake.html#AEN324"
+>Package Installation</A
+></DT
+><DT
+>2.4.2. <A
+HREF="mandrake.html#AEN387"
+>Get GnuMed source</A
+></DT
+><DT
+>2.4.3. <A
+HREF="mandrake.html#AEN391"
+>Modify postgresql.conf</A
+></DT
+><DT
+>2.4.4. <A
+HREF="mandrake.html#AEN396"
+>Modify "pg_hba.conf" found in
+	  "/var/lib/pgsql/data"</A
+></DT
+><DT
+>2.4.5. <A
+HREF="mandrake.html#AEN401"
+>Create db</A
+></DT
+><DT
+>2.4.6. <A
+HREF="mandrake.html#AEN429"
+>Set 'GNUMED_DIR' variable</A
+></DT
+><DT
+>2.4.7. <A
+HREF="mandrake.html#AEN434"
+>Running GnuMed:</A
+></DT
+></DL
+></DD
+><DT
+>2.5. <A
 HREF="mac.html"
 >Mac - GnuMED on MacOSX 10.2</A
 ></DT
 ><DD
 ><DL
 ><DT
->2.3.1. <A
-HREF="mac.html#AEN282"
+>2.5.1. <A
+HREF="mac.html#AEN439"
 >System</A
 ></DT
 ><DT
->2.3.2. <A
-HREF="mac.html#AEN285"
+>2.5.2. <A
+HREF="mac.html#AEN442"
 >Instaling Python and wxWindows</A
 ></DT
 ><DT
->2.3.3. <A
-HREF="mac.html#AEN292"
+>2.5.3. <A
+HREF="mac.html#AEN449"
 >Install mx extensions</A
 ></DT
 ><DT
->2.3.4. <A
-HREF="mac.html#AEN302"
+>2.5.4. <A
+HREF="mac.html#AEN459"
 >Installing postgresql</A
 ></DT
 ><DT
->2.3.5. <A
-HREF="mac.html#AEN310"
+>2.5.5. <A
+HREF="mac.html#AEN467"
 >Installing pypgsql</A
 ></DT
 ><DT
->2.3.6. <A
-HREF="mac.html#AEN324"
+>2.5.6. <A
+HREF="mac.html#AEN481"
 >Download gnumed cvs</A
 ></DT
 ><DT
->2.3.7. <A
-HREF="mac.html#AEN331"
+>2.5.7. <A
+HREF="mac.html#AEN488"
 >Configuring postgres for Gnumed</A
 ></DT
 ></DL
 ></DD
 ><DT
->2.4. <A
+>2.6. <A
 HREF="win9x.html"
 >Windows</A
 ></DT
 ><DD
 ><DL
 ><DT
->2.4.1. <A
-HREF="win9x.html#AEN387"
+>2.6.1. <A
+HREF="win9x.html#AEN542"
 >Installing PostgreSQL</A
 ></DT
 ><DT
->2.4.2. <A
-HREF="win9x.html#AEN409"
+>2.6.2. <A
+HREF="win9x.html#AEN564"
 >Running the client</A
 ></DT
 ></DL
 ></DD
-><DT
->2.5. <A
-HREF="pgsql.html"
->Configuring <SPAN
-CLASS="APPLICATION"
->PostgreSQL</SPAN
-> for GnuMed</A
-></DT
 ></DL
 ></DIV
 ></DIV
@@ -235,7 +281,11 @@ VALIGN="top"
 WIDTH="34%"
 ALIGN="center"
 VALIGN="top"
->&nbsp;</TD
+><A
+HREF="administration.html"
+ACCESSKEY="U"
+>Up</A
+></TD
 ><TD
 WIDTH="33%"
 ALIGN="right"
