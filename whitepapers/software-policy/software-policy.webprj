@@ -1,5 +1,5 @@
 <webproject>
-<project usePreviewPrefix="0" type="Local" previewPrefix="file://" newfiles="-//w3c//dtd html 4.01 strict//en" name="software-policy" encoding="iso 8859-1" >
+<project usePreviewPrefix="0" previewPrefix="file://" type="Local" newfiles="-//w3c//dtd html 4.01 strict//en" name="software-policy" encoding="iso 8859-1" >
 <upload/>
 <author>Dr. Horst Herb</author>
 <email>hherb@gnumed.net</email>
@@ -34,9 +34,7 @@
 <item url="makepdf.sh" />
 <item url="programming-languages.html" />
 <item url="references.html" />
-<item url="software-policy.pdf" />
-<item url="software-policy.webprj" />
-<item url="temp.ps" />
 <item url="securitytools.html" />
+<item url="rpc.html" />
 </project>
 </webproject>
