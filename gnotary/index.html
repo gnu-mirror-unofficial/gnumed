@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>GNUMed Utility Collection</title>
+
+</head>
+ <body>
+<div align="Center">
+<h1>GNUMed Utility Collection</h1>
+<hr align="Left" width="100%" size="2"><br>
+<blockquote>
+  <div align="Justify">
+  <p>
+  Welcome to the GNUMed utility collection. This is
+  a loose collection of small utility programs that were either necessary
+  in the creation process of <a href="http://www.gnumed.org"> GNUMed</a>, or
+  a useful offspin. All these utilities are free software
+  copylefted under the <a href="http://www.gnu.org/copyleft/gpl.html">
+  GNU General Public License</a> (GPL). You may use them at
+  your own  risk as we do not provide any guarantee at all.
+  </p>
+
+  </div>
+  </blockquote>
+  <hr align="Left" width="100%" size="2"><br>
+  <br>
+  <br>
+    <table cellpadding="10" cellspacing="2" border="0" width="90%">
+        <tbody>
+        <tr valign="Top">
+            <td valign="Top" rowspan="1" colspan="5" bgcolor="#ff6666">
+                <div align="Center">
+                    <h2>GNotary</h2>
+                </div>
+            </td>
+        </tr>
+
+        <tr valign="Top">
+
+            <td valign="Top rowspan=" 1="" colspan="5">
+                <blockquote>
+                    <p><br>
+                        <br>
+                        GNotary is a combination of a secure backup program and
+                        a digital notary service. It consists of a client part
+                        and a server part.<br>
+                    </p>
+                    <h3>26.11.2001: GNotary source code now available from CVS <A HREF=http://savannah.gnu.org/projects/gnotary>savannah.gnu.org</A></h3>
+                    <h3>24.09.2001: GNotary client available for <A HREF="#download">download</A> CAVE: better get the newest source code from CVS</h3>
+                    <h3>24.06.2001: GNOTARY IS OPERATIONAL IN BETA TEST</h3>
+                    <p> <br>
+                    </p>
+                    <ol>
+                        <li>
+                            <p><a href="tampering.html">Why would I need such
+                                a service?</a></p>
+                        </li>
+                        <ul>
+                            <li>
+                                <p>Without a digital notary service, it is <a href="tampering.html">
+                                    impossible to prove integrity</a> and authenticity
+                                    of your electronic health records.<a href="need.html"></a></p>
+                            </li>
+                        </ul>
+                        <li>
+                            <p>How does it work?</p>
+                        </li>
+                        <ul>
+                            <li>
+                                <p>There are several <a href="methods.html">methods
+                                    of proving data integrity</a>. We do it by
+                                    countersigning a digital signature of
+                                    your document <b>and optionally </b> storing
+                                    the signature/countersignature offsite, where
+                                    you have no access.</p>
+                            </li>
+                        </ul>
+                        <li>
+                            <p>When will it be available?</p>
+                        </li>
+                        <ul>
+                            <li>
+                                <p>GNotary is free software written by unpaid
+                                    volunteers. We develop at our own pace, for
+                                    our own needs. If you need it sooner, you
+                                    can always hire a software developer to help
+                                    us.</p>
+                            </li>
+                        </ul>
+                        <li>
+                            <p>What will it cost?</p>
+                        </li>
+                        <ul>
+                            <li> 
+                                <p>Nothing. GNotary is free software, no strings 
+                                    attached.</p>
+                             </li>
+                        </ul>
+                        <li>
+                            <p>What can I do until it becomes available?</p>
+                        </li>
+                        <ul>
+                            <li> 
+                                <p><a href="tools.html">Use freely available command
+                                    line tools.</a></p>
+                            </li>
+                        </ul>
+                    </ol>
+                    <br>
+                    <br>
+                    <hr align="Left" width="100%" size="2">
+                    <br>
+                    <h2>The GNotary client</h2>
+                    <p>
+                    The GNotary client is a Python script providing a graphical
+                    user interface to the common tasks of selecting files for a
+                    backup, calculating strong hashes for each file, and storing
+                    files in a compressed ZIP archive file. By pressing a single button,
+                    the hashes of the selected files are calculated and sent to one or
+                    more notary servers.
+                    </p>
+                    <p>
+                    It should run on any platform supporting Python and the wxPython toolkit.
+                    I have tested it only on Gnu/Linux and Windows.
+                    <p>
+                    At present I am busy with other projects, I would welcome if somebody would
+                    continue development and biuld some binaries (built with py2exe) for download.
+                    However, the software already works as it is; it just would benefit from additional
+                    functionality and some polishing.
+                    </p>
+
+                    <p>
+                    At present, I am using the MD5 algorithm.
+                    However, the final version should use the more trustworthy
+                    <a href="http://www.esat.kuleuven.ac.be/~bosselae/ripemd160.html">
+                    RIPEMD-160 </a> algorithm.
+                    </p>
+
+                    <p>
+                    <blockquote><font color="#990000">
+                    <b>CAVE:</b>
+                    This software is early beta stage. Although the author
+                    already uses it daily, it might still be
+                    full of bugs and certainly misses some features. For all we know, it might
+                    simply blow your computer apart
+                    </font> </blockquote>
+                    </p>
+                    <br>
+
+
+                    <p>
+                    <hr align="Left" width="100%" size="2">
+                    </p>
+
+
+                    <p>
+                    <h2><font color="#000000">The GNotary server</font></h2>
+                    </p>
+                    <p>The &quot;server&quot; is a simple python script which
+                        grabs incoming mail that matches a filter condition, pipes
+                        this mail through the signing process of the GNU privacy
+                        guard, retains a copy of the signed message, and sends
+                        the signed message back to the sender.
+                    </p>
+                    <p>
+                        In the future, all notary servers will exchange message digests of
+                        their own certificate log mutually (and get them mutually certified),
+                        thus creating a virtually unbreakable chain of evidence (tampering with
+                        a single mail certificate on a single server would invalidate all other
+                        log certificates in an auditable and traceable way).
+                    </p>
+
+                    <py).
+
+                    </p>
+
+
+
+                    <p>A second server, and email autoresponder, is set up to
+                        send the public key of the notary service on request.
+                    </p>
+
+                    <p>An operational server which you might try is:</p>
+                    <p><kbd><b><i>gnotary@gnumed.net</i></b></kbd></p>
+                    <p>Simply write an email containing the message digest or
+                        whatever yoiu need notarized, and make sure the subject
+                        line contains
+
+                        <p>
+                        <kbd><b><i>gnotarize</i></b></kbd>
+                        </p>
+
+                        and nothing else
+                    </p>
+
+                    <p>To request thepublic key, write an email to</p>
+                    <p><kbd><b><i>keyserver@gnumed.net</i></b></kbd></p>
+                    <p>with the subject line containing
+                        <p>
+                        <kbd><b><i>gnotary-public-key</i></b></kbd>
+                        </p>
+
+                </blockquote>
+            </td>
+        </tr>
+        <p>
+
+        </tbody>
+        </table>
+
+        <hr align="Left" width="100%" size="2">
+
+        <p>
+        <h2><font color="#000000"><A NAME="download">Download</A></font></h2>
+        </p>
+        <div align="left">
+
+
+        Actively developed source code can be found at
+        <A HREF=http://savannah.gnu.org/projects/gnotary>savannah.gnu.org</A>
+        <p>
+        There you will find instructions on how to access CVS. You will even find a web interface to the CVS server,
+        and you can inspect source code and source histories by using the convenient
+        web interface.
+        <p>
+        The code available for download below is outdated.
+
+
+        <TABLE>
+        <TBODY ALIGN="left" BGCOLOR="#fdffc5"></TBODY>
+        <TR ALIGN="center " VALIGN="top" BGCOLOR="#ff6666">
+
+                <TD> module </TD>
+                <TD> description </TD>
+                <TD> author </TD>
+                <TD> version </TD>
+                <TD> last change </TD>
+        </TR>
+
+
+
+  <TR VALIGN="top">
+    <TD> <A HREF="download/gnotary_client.py">gnotary_client.py</A>  </TD>
+    <TD>
+    The GNotary GUI client: working features include drag-and-drop of files,
+    hashing the selected files with MD5, archiving all selected files into a zip
+    archive, and sending all hashes by email to a list of notary servers.
+    <p>
+    Usage: start the client. Open the file manager (Konqueror, Explorer ...) of
+    your choice. Drag and drop as many files as you want into the open client
+    window. Click the button to either create the archive or to send the hashes
+    to the server list. You will be prompted for your email parameters and
+    notary server email addresses if they haven't been configured.
+    </p>
+    </TD>
+    <TD> hherb  </TD>
+    <TD> 0.3 </TD>
+    <TD> 24.09.2001 </TD>
+  </TR>
+  <TR VALIGN="top">
+    <TD> <A HREF="download/gnotary_client.0.3.1.tgz">gnotary_client.0.3.1</A>  </TD>
+    <TD>
+    Bugfix: corrupted setup dialog box in Windows fixed (does not happen on other platforms)
+    </TD>
+    <TD> hherb  </TD>
+    <TD> 0.3.1 </TD>
+    <TD> 24.09.2001 </TD>
+  </TR>
+
+</TABLE>
+        <p> <hr> </p>
+
+        <p>
+        Those who still want the old binary GUI client software, can contact me by </a> private email
+        <a href="mailto:hherb@gnumed.net">private email </a>.
+        </p>
+        </div>
+
+
+
+      <br>
+
+      <hr align="Left" width="100%" size="2">
+      <address>(c) 2000, 2001 <a href="http://www.gnu.org/copyleft/fdl.html">
+  GNU Free Documentation License</a> Dr. Horst Herb, <a href="mailto:hherb@gnumed.net">
+  hherb@gnumed.net</a></address>
+      <br>
+      </div>
+      </body>
+      </html>
+      </html>
+

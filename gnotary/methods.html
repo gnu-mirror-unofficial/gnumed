@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>Methods of proving data integrity</title>
+</head>
+<body>
+<h2>Methods of proving data integrity</h2>
+<address>(c) <a href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation
+License</a>&nbsp; 2001 Horst Herb, hherb@gnumed.net</address>
+<hr align="Left" width="100%" size="2">
+<p>In order to prove data integrity we have to check <br>
+</p>
+<ol>
+  <li><a href="#accidental">that the document has not been accidentally corrupted</a></li>
+  <li><a href="#manipulation">that the document has not been illegitimately
+manipulated</a></li>
+</ol>
+<div align="Left">
+<hr align="Left" width="100%" size="2"><br>
+</div>
+<h3><a name="accidental"></a>Protection against accidental corruption</h3>
+<p>This is the easy part. The most primitive attempt would be to store multiple
+copies. The likelihood that all of them get corrupted is slim. However, with
+only a few copies you might get into a situation that most of them do not
+match mutually. How would you decide then which copy is the true original?</p>
+<p>There are mathematical one way functions, so called "hashes". These functions
+will calculate a presumably unique large number for any given document. We
+will call this number a <b>message digest</b>. Of course, it will depend
+on the choice of hashing algorithm how likely it is that this number is really
+unique.</p>
+<p>Cryptography is an exact science, a branch of mathematics. There is a
+lot of money in cryptography, so people working professionally in it show
+similar enthusiasm for their work as we do in medicine. As in any other exact
+science, good and proven methods are fully disclosed, the rest is likely
+to be snake oil.</p>
+<p>An excellent choice of hashing algorithm to digest the type of documents
+we are likely to encounter in paperless medicine is <a href="http:/%20/%20www.esat.kuleuven.ac.be/%20~bosselae/%20ripemd160.html">
+RIPEMD-160</a>. You should <a href="http:/%20/%20www.esat.kuleuven.ac.be/%20~bosselae/%20ripemd160.html">
+visit this link</a> to learn more about it. It is reasonably crash proof
+(no known way of altering the document yet preserving the unique message
+digest), and the performance is still good enough on low end computers for
+daily use.</p>
+<p>To generate a RIPEMD-160 message digest ("digital fingerprint") of your
+document, you can <a href="http://www.gnupg.org">download</a> the "GNU Privacy
+Guard" . After installing it, you enter at your command prompt: </p>
+<div align="Center">
+<p><samp>gpg --print-md ripemd160 &lt;your file name&gt;</samp><br>
+</p>
+<div align="Left">Wildcards like "*" are allowed, then all files in the current
+working directory will be digested.&nbsp; You can capture the screen output
+in a file:<br>
+<br>
+<div align="Center"><samp>gpg --print-md ripemd160 * &gt;&gt; allfiles.rmd</samp><br>
+</div>
+</div>
+<div align="Left">
+<p>would create a text file "allfiles.rmd" (if it does not exist yet) and
+append a list of all file names followed by their message digests. You can
+make a backup of this list, and use it to compare it to another list generated
+in the future. A digest mismatch for any file will prove that that file has
+been altered in some way.</p>
+<p>In order to understand the pwoer of such a function, I would suggest the
+following experiment:<br>
+Get the largest text document you can find on your computer (or download
+a large text file like the more than 1000 pages long&nbsp; classic <i><a href="http://digital.library.upenn.edu/webbin/gutbook/lookup?num=747">
+Anomalies and Curiosities of Medicine by George Milbry Gould and Walter Lytle
+Pyle).</a></i> Calculate the message digest as outlined above. Now open the
+document in your favourite text editor, alter one single character anywhere
+in the file (like changing a period into a comma), save it and calculate
+the message digest again. Impressed?<br>
+</p>
+</div>
+</div>
+Now you know how to track down data corruption in an easy and practical way.<br>
+<br>
+<hr align="Left" width="100%" size="2"><br>
+<h3><a name="manipulation"></a>Protection against illegitimate manipulation</h3>
+<p>In order to prove that a gioven document has not been altered, we need
+two things:<br>
+</p>
+<ol>
+  <li>a message digest of that document as <a href="#accidental">outlined</a>
+ in the previous paragraph</li>
+  <li>some sort of proof</li>
+  <ol>
+    <li>when this digest has been generated</li>
+    <li>who generated this digest</li>
+  </ol>
+</ol>
+Proving who generated the digest can be done by digitally signing the digest.
+Theoretically, the "standard" algorithm for digital signatures, "DSA", could
+be used both for creating the message digest and the signature. Part of the
+DSA algotithm is generating a message digest with the "SHA" algorithm.<br>
+<br>
+The signature can be done again with GPG:<br>
+<br>
+<div align="Center">gpg --ba &lt;message digest file name&gt;<br>
+<br>
+<div align="Left">You can check the signature with<br>
+<div align="Center"><samp>gpg --verify &lt;message digest file name&gt;.asc</samp><br>
+</div>
+</div>
+</div>
+<br>
+Documents in medical health records can be quite large. The reliability of
+a hash function declines with the size and complexity of a message.<br>
+RIPEMD-60 seems to have a definite advantge. You may read details about the
+<a href="ftp://ftp.ens.fr/pub/dmi/users/chabaud/sha.ps">vulnerability of&nbsp;
+SHA</a> ``Differential Collisions in SHA-0,'' Advances in Cryptology - Crypto'98,
+LNCS 1462, H. Krawczyk, Ed., Springer-Verlag, 1998, pp. 56-71. <br>
+<br>
+Although it is extremely unlikely that a SHA-digested document can be altered
+in a way that it would still produce the same SHA digest, there is no reason
+not to use RIPEMD-160 to digest large files as it is apparently more reliable,&nbsp;
+free and has no other known disadvantages.<br>
+<br>
+A digital signature proves that you have signed a particular document as
+long as yout private key has not been compromised. Similar to loss of credit
+cards, you will be liable for loss of your private keys if you don't notify
+the key certifying authority (which might be yorself or your Division) that
+your key has been compromised. You would have a hard time in court proving
+that a document digitally signed by you has not been signed by you.<br>
+<br>
+Now comes the tricky bit: Proving <b>when</b> the document has been signed.
+A timestamp is embedded in the signature . The only way the signature generating
+software can tell the time is by querying the time provided by your computer
+clock - which you can adjust at will, any time.<br>
+<br>
+The solution is that you have to deposit your signature with a trusted 3rd
+party (trusted by both you and a judge in a potential court case). Almost
+as good a prove will be if the trusted 3rd party countersigns your signature:
+as the times tamp is embedded with both signatures,&nbsp; and you can't forge
+the signature of the signing 3rd party (if it is a trusted one), you can't
+manipulate the time stamp provide by the 3rd party.<br>
+<br>
+You can do this even without Internet access: simply print the signature
+and the countersignature onto a piece of paper, and deposit it with a trustworthy
+3rd party. To verify the signature,you would have to type it in again.<br>
+<br>
+The more extreme the demands on proving authenticity are, the more 3rd parties
+you have to involve. I believe that two independend non-profit organisations
+(like the Divisions of General Practice) would be trustworthy enough , but
+you might choose to involve a justice of peace, a notary or similar institution.
+<br>
+<br>
+The benefit of this method is that you don't have to disclose any confidential
+data to the signing&nbsp; 3rd party, and that the volume of data to sign
+is that small that it is practical to distribute th signatures to many different
+servers through the Internet. Done properly,there is no need for expensive
+PKI infrastructure or key certification authorities (which are rather worthless
+anyway, <a href="http://www.schneier.com/insiderisks5.html">read this article</a>
+ written by one of the world's foremost "crypto Gurus", Bruce Schneier.<br>
+<br>
+<table cellpadding="20" cellspacing="2" border="1" width="100%" align="Center" bgcolor="#ffffcc">
+  <tbody>
+    <tr valign="Top">
+      <td valign="Top">There is one utmost important issue: always bear in
+mind that you might need to proof authenticity of a given document many years,
+even decades, in the future. Therfore you must not use any software that
+depends on a particular platform like for example Microsoft Windows. <br>
+      <br>
+You cannot expect that particular software will survive and be maintained
+for decades. The same issue is valid for commercial key authorities. They
+are unlikely to exist forever. Do not make yourself dependent on them!<br>
+      <br>
+Quality and dependable software suitable for our purposes will run on virtually
+any platform, and source code will always be provided. The source code is
+written in a portable way that will make it easy to maintain it on future
+platforms. Even if you are not able to use the source yourself, ther ewill
+always be someone who cyou can pay for such a service. Without the source,
+you are lost.<br>
+      <br>
+Therefore, at present I cannot recommend any other product than the <a href="http://www.gnupg.org">
+GNU Privacy Guard</a> for our purposes. It might be a little bit more dificult
+to use than other products, but it is at least future proof.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<div align="Center">[<a href="index.html">back</a>]<br>
+<hr align="Left" width="100%" size="2">
+<address>(c) 2000, 2001 <a href="http://www.gnu.org/copyleft/fdl.html">GNU
+Free Documentation License</a> Dr. Horst Herb, <a href="mailto:hherb@gnumed.net">
+hherb@gnumed.net</a></address>
+<br>
+</div>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>How to tamper with electronic health records ...</title>
+
+</head>
+
+<body>
+<h2>How to tamper with electronic health records ...</h2>
+<hr align="Left" width="100%" size="2"> <br>
+
+<p>
+Well - this essay is in fact about how <b>any</b> document on literally
+<b> any</b> computer system can be tampered with. Electronic health records
+are just one good example where it becomes  obvious that a "closed" computer
+system is <b>always</b> untrustworthy   regarding data integrity.
+</p>
+
+<p>
+Under "closed computer system" we understand a single computers or a
+cluster of computers connected together in a <b>local</b> network.
+No data leaves the system.
+</p>
+
+<p>
+It is obvious that medical health records need to fulfil the following
+criteria in order to be useful in a court case as evidence:
+</p>
+<br>
+<ol>
+  <li>
+        <p>
+        <b>proof of authorship:</b> this can be achieved with digital signatures.
+        It is an entirely different can of worms from our topic here and will
+        not be discussed
+        </p>
+  </li>
+  <li>
+        <p>
+        <b>proof of integrity:</b> you must be able to prove that the records
+        could not have been altered since they have been generated for the first
+        time. This includes both accidental (data corruption) and illegitimate
+        (data   tampering) alterations.
+        </p>
+  </li>
+</ol>
+
+<p>
+It is not too difficult to prove absence of data corruption, simply by
+using strong checksum algorithms (like MD5) - we will not discuss this
+topic yet.   Here we will focus on the possibility of illegitimate document
+tampering   and how to prevent it.
+</p>
+
+<p>
+Are you sure that your system is tamper proof? How would you know? What
+if  it comes to a court case, and all that is between winning
+the case or losing  your medical registration are your electronic
+health records, and all of  a sudden an IT expert enters the witness
+box and <i><b>proves that you can't prove</b></i> that your health
+records have not been illegitimately altered?
+</p>
+
+<p>
+This is such an important issue that you must not succumb to believe commercial
+blurb. You must check yourself, you must find out how exactly data integrity
+is guaranteed on your system, or you should not risk going paperless.
+</p>
+
+<p>
+There are misinformed or even dishonest software vendors who claim that
+they can prevent data tampering in a reliable way by several countermeasures,
+including:
+</p>
+
+<ol>
+  <li>
+        <p>
+        <a href="#password">password protected access restriction</a>
+        </p>
+  </li>
+  <li>
+        <p>
+        <a href="#nondisclosure">non-disclosure of internal data structures
+        and file formats</a>
+        </p>
+  </li>
+  <li>
+        <p>
+        <a href="#secrettrail">leaving "secret" audit trails on the hard disk</a>
+        </p>
+  </li>
+  <li>
+        <p>
+        <a href="#encryption">encrypting information</a>
+        </p>
+  </li>
+</ol>
+
+<p>
+I will now demonstrate one by one how these countermeasures can
+be circumvented. Most software vendors are of course using a
+combination of all these measures in the attempt to make it more difficult
+to "hack". ". I will show you that all they achieve in reality is to
+waste a little more of the "hackers" time.
+</p>
+
+<p>
+After this demonstration, I will present <a href="#generic">a generic
+approach</a> how <b>any</b> document can be modified regardless of  the
+software that was used to generate the data without any need for so called
+"hacking". This generic approach is a proof for the impossibility of proving
+data integrity in a closed system.
+</p>
+
+<p>
+Before you despair and abandon paperless health records, I will show you
+that it is perfectly possible to <a href="methods.html"> guarantee
+data integrity</a>  with little extra effort- an effort that should
+be undertaken by your software vendor.
+</p>
+
+<br> <hr align="Left" width="100%" size="2"><br>
+<ol>
+  <li>
+        <h3><a name="password"></a>password protected access restriction</h3>
+        <p>
+        If the program relies on password checking alone to give you access
+        to  the  data, and does not protect the data otherwise,
+        it is easy. You simply access the data with different software
+        (like text editors in  the most simple case). Health IT is a serious
+        business. Confidential patient data should not be entrusted to a security
+        &ldquo;system&rdquo; that can, in the most simple of cases, be bypassed by
+        simply opening up a data file in a text editor. In some cases, the password
+        is used to unlock data encryption.  Unfortunately, this approach makes
+        it all too easy to circumvent anti tampering provisions.
+        </p>
+
+        <p>
+        A program is nothing but a flow of instructions. The program flow
+        branches to different subroutines depending on information. Common password
+        protection schemes include subroutines that check the password against
+        a hash code of that password (i.e. they do not store the password itself).
+        The routine that checks the password branches to different subroutines,
+        depending on whether the entered password was right or wrong.
+        </p>
+
+        <p>
+        With basic software tools called "debuggers" and "disassemblers" it
+        is possible to reverse engineer binary program code intohuman readable form
+        and execute program instructions step by step. That way, it is possible
+        to find the subroutine that decides which way to branch: either to
+        accept or to reject the password. From here it is simple just to swap
+        the branching, so that the program will accept the password
+        whenever it is wrong.
+        </p>
+
+        <p>
+        Software vendors have tried many different approaches to make
+        this procedure more difficult, but a quick look at the computer game market
+        shows that there is no sofware resistant to reverse engineering
+        for a long time.
+        </p>
+  </li>
+  <br> <hr align="Left" width="100%" size="2"><br>
+  <li>
+        <h3>
+        <a name="nondisclosure"></a>non-disclosure of internal data structures
+        and file formats
+        </h3>
+
+        <p>
+        Reverse engineering data structures and file formats is often easier
+        than reverse engineering password access. Most structures can be found out
+        using a binary editor (sort of a text editior that gives you direct access
+        at byte level to information stored on the hard disk) and searching for patterns.
+        </p>
+
+        <p>
+        As you  can use the software that generated the pattern,
+        you can save the file containing the information you want to manipulate,
+        enter some information, compare the altered file with the previous
+        file for differences. There are good software tools freely available (like
+        "diff") that make this process very easy.
+        </p>
+
+        <p>
+        Repeat this a few times, and you will get enough information to reconstruct
+        internal data structures and file formats.
+        </p>
+
+  </li>
+  <br> <hr align="Left" width="100%" size="2"><br>
+  <li>
+        <h3> <a name="secrettrail"></a>leaving "secret" audit trails on the hard disk</h3>
+
+        <p>
+        In this case, I can save the status of my hard disk before installing
+        the software and after using it, and then compare the differences
+        as outlined above. Writing information to the hard disk means calling
+        subroutines provided by operating system or BIOS (Basic Input/Output System).
+        Calling these subroutines can easily be intercepted, and a filter in the intercepting
+        subroutine can comfortably log any write access for my perusal. It is not
+        possible to hide write access to the hard disk, and it is not possible to
+        prevent me from finding out what has changed on  the harddisk between
+        two different times of software use.
+        </p>
+
+  </li>
+  <br> <hr align="Left" width="100%" size="2"><br>
+  <li>
+
+        <h3><a name="encryption"></a>encrypting information</h3>
+
+        <p>
+        This is often the hardest nut to crack, and sometimes impractical.
+        Most software vendors seem to rely on flawed or simplicistic
+        cryptography provided by 3rd party vendors who are notorious for incorrect
+        implementation of security tools (such as Microsofts implementations of a
+        virtual private network PPtP: read about it
+        <a href="http://www.counterpane.com/pptp.html"> here</a> - a basically
+        reasonable technology, particularly useful for linking
+        surgeries together, has been compromised by artificially reducing the keyspace
+        and other flaws). Companies selling "password recovery" for many of the popular
+        software packages such as Microsoft Access are abundant on the net, examples
+        are found <a href="http://www.passwordrecovery.com/"> here </a> and
+        <a href="http://www.lostpassword.com/"> here</a>, but you may find better ones
+        using your favourite search engines.
+        </p>
+  </li>
+</ol>
+<blockquote>
+        <p>
+        However, we don't have to waste too much time trying to circumvent
+        cryptography. In most cases, we can trigger the internal decryption routines
+        without need to know about them simply by using the password reverse
+        engineering approach. Although I haven't come across a medical software
+        package yet where this would not yield the desired result, I will now
+        outline a generic approach  how any anti-tampering method of any software
+        vendor can be circumvented, provided no data leaves our closed system
+        before the tampering happens.
+        </p>
+
+        <br> <hr align="Left" width="100%" size="2"><br>
+</blockquote>
+
+<h2><a name="generic"></a>A generic approach towards tampering electronic health records    </h2>
+  <br>
+  <ol>
+    <li>
+        <p>
+        Generate an exact byte-by-byte replica of my hard disk partition
+        and my BIOS settings. Tools like "Partition Magic" or the free
+        <a href="http://www.gnu.org/software/parted/">
+        GNU Parted</a> make this very easy and straightforward. Most modern
+        mainboards with flash BIOS come with utility software that allows you
+        to save your BIOS  settings - but there are more sophisticated tools freely
+        available on the  net. Partition image and BIOS image together represent
+        a true &bdquo;snapshot&ldquo; of a computer system for any given time.
+        Cheap storage media like CD-R, allow to generate snapshots as often
+        as necessary. Restoring from; a snapshot will exactly reproduce the status
+        of a system for any given time.
+        </p>
+    </li>
+    <li>
+        <p>
+        Install a software utility which intercepts all input events (mouse,
+        keyboard) and stores them time stamped in a log file. This is particularly
+        easy in the Windows environment. You can write your own if you have basic
+        programming skills in low level languages such as C, or you may contract
+        a programmer to have it written for you, or you can search the
+        web for such tools - <a href=interception.html> they <b>do</b> exist </a>.
+        </p>
+    </li>
+    <li>
+        <p> Suppose you want to illegitimately alter electronic medical
+        records from last year. Without any knowledge about the file structure
+        or the cryptographic features of the medical software package that was
+        used to generate and save these records, you would simply open the last
+        log file before that time, search for the entry you want to change, and
+        enter as many keyboard / mouse events as necessary.
+        </p>
+    </li>
+    <li>
+        <p>
+        After restoring the BIOS settings and restoring the partition
+        image onto the hard disk  you would replay all captured
+        keyboard and mouse events (including the ones you just manipulated).
+        A good interceptor utility would adjust the hardware clock accordingly during
+        playback, thus making it impossible to track the changes down
+        later on.
+        </p>
+    </li>
+  </ol>
+
+<p>The health record has now been altered, and neither your medical
+software nor any other software on your computer would have been able
+to detect the manipulation.<b> It would be impossible for even the best
+IT specialist to detect it</b>
+</p>
+
+<p>
+In practice, it is not necessary to resort to such methods. Simple reverse
+engineering and &bdquo;hacking&ldquo; is virtually always successful.   <br>
+You don't believe me? Have a look at <a href="interception.html">this page.</a><br>
+</p>
+
+<p>
+On a similar line it should be mentioned that software can't even be sure it is running on
+the platform it supposes it runs. Hardware emulators and "virtual machines" blossom
+the more restrictive hard- and software vendors get; software like
+<a href="ttp://www.vmware.com"> "vmware" </a> for example
+allows to create virtual machines that to any software look like a standard PC running
+Windows 98 or Windows NT, yet they might run on some UNIX operating system running on
+some exotic processor with hardware entirely different to what Windows system calls
+will make the software believe. <b> It is a fact that software never can safely make any
+assumptions as to which platform and hardware it is really running on, let alone finding out
+at what time it is running. It is too simple to emulate even connections to time servers on
+the net</b> It should be obvious by now, that it definitely impossible to avoid tampering
+under these circumstances.
+</p>
+
+<p>
+Even Microsoft has realized that "resistance is futile", that it is <b> impossible </b>
+to make any software defense mechanism uncrackable. A quote from their own
+<a href= "http://research.microsoft.com/crypto/piracy.asp"> web site </a>:
+</p>
+
+<blockquote>
+   <p>
+   " ... But given enough time to scour the operating code for the lines that operate the softwares
+   defenses, a skilled cracker can always find them and remove or disable them no matter how
+   carefully they are hidden and disguised. In the software piracy game, the attacker always
+   has the advantage  he is invisible, he has as much time as he needs and he is often as
+   skilled as the defender. The defender can watch how the cracker operates, learn from the
+   way he exploits the code and close the holes he exposes, <b> <u> but because of the open nature
+   of the personal computer it is next to impossible to design a piece of software that can
+   never be cracked </u> </b>. The trick is to come up with new defenses that will be unfamiliar to
+   crackers, to make cracking such a laborious, time consuming process that it takes weeks and
+   weeks to find and disable every carefully hidden piece of code. ... "
+   </p>
+</blockquote>
+
+<p>
+<br>
+Now you should go to <a href="methods.html">this page</a> to learn how
+you still can <a href="methods.html">prove the authenticity</a> of your
+digital documents.
+</p>
+
+<div align="Center">[<a href="index.html">back</a>]<br>
+        <hr align="Left" width="100%" size="2">
+        <address>(c) 2000, 2001 <a href="http://www.gnu.org/copyleft/fdl.html">
+        GNU Free Documentation License</a> Dr. Horst Herb, <a href="mailto:hherb@gnumed.net">
+        hherb@gnumed.net</a></address>
+        <br>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+           
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <title>Command line tools for notary purposes</title>
+</head>
+ <body>
+   
+<h2>Using free command line tools until GNotary becomes available</h2>
+   
+<hr align="Left" width="100%" size="2"><br>
+   ... or even longer; who knows, maybe you become fond of&nbsp; nicely crafted 
+  shell scripts?<br>
+  <br>
+   
+<ul>
+       
+  <li>anything written in <font color="#cc0000">red<font color="#000000">
+   is what you have to enter at the system prompt</font></font><br>
+    </li>
+   
+</ul>
+   
+<ol>
+       
+  <li>Get the GNU Privacy Guard from <a href="http://www.gnupg.org">http://www.gnupg.org 
+  and install it</a></li>
+  <li><a href="http://www.gnupg.org/gph/en/manual.pdf">Download the PDF documentation</a>
+, optionally print it out<a href="http://www.gnupg.org"></a>, but READ IT!</li>
+       
+  <li>Generate your own keyset:, following the instructions available <a href="http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.1">
+here</a>. </li>
+  <li>Take your time to thin of a pass phrase that you can memorize. Read
+the instructions regarding pass phrases carefully!<a href="http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.1"></a></li>
+       
+  <li>Exchange keys with a trusted 3rd party like your Divison of General
+Practice</li>
+       
+  <li>Make a compressed backup of the files you want to notarize with your 
+  favourite backup software</li>
+       
+  <li>Sign the compressed backup file with <font color="#cc0000">gpg -ba 
+ &lt;your-file-name&gt;</font></li>
+       
+  <li>This will create a file &lt;your-file-name&gt;.asc after you entered 
+  your passphrase at the prompt</li>
+       
+  <li>Check the signature with <font color="#ff0000">gpg --verify &lt;your-file-name&gt;.asc 
+  &lt;your-file-name&gt;</font><br>
+    </li>
+       
+  <li><a href="http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.1"></a>
+  A message will show you when your document has been signed, what algorithm 
+  and key had been used, who had signed your document, and whether the integrity 
+  of your document can be guaranteed.</li>
+       
+  <li>Send this message by email to your trusted third party</li>
+       
+  <li>Your trusted third party signs the message same way as you did, just
+&nbsp;&nbsp; using their private key for the signature</li>
+       
+  <li>Then they email it back to you. Keep both your signature and theirs.</li>
+       
+  <li>In order to be able to verify their signature, you need to import their
+&nbsp;&nbsp; public key. </li>
+       
+  <li>Make regular backups of your signatures and keyrings. </li>
+       
+  <li>Keep track of which file has been notarized with which signature</li>
+  <li><big><font color="#cc0000"><i><b>Never ever give your private key away.
+Keep it the same way as if would be a million Dollars in cash.</b></i></font></big><big>
+ </big><big><font color="#cc0000"><i><b>Never ever even think about writing
+your passphrase down. </b></i></font></big><br>
+    </li>
+   
+</ol>
+  See, no magic involved.The nice thing with GNotary will be that all of
+the   above can be achieved with a few mouse clicks (well, you still have
+to enter   your passphrase once per session as well).<br>
+  <br>
+ 
+<div align="Center"> [<a href="index.html">back</a>]<br>
+<hr align="Left" width="100%" size="2">
+<address>(c) 2000, 2001 <a href="http://www.gnu.org/copyleft/fdl.html">GNU
+Free Documentation License</a> Dr. Horst Herb, <a href="mailto:hherb@gnumed.net">
+hherb@gnumed.net</a></address>
+<br>
+ </div>
+   
+</body>
+</html>
