@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Interacting with the Backend</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h2>Interacting with the Backend</h2>
+<hr width="100%" size="2"><br>
+Most of the backend interaction happens through <a href="http://www.python.org/topics/database/DatabaseAPI-2.0.html">
+DB-API 2.0</a> compliant database adapters. Since there are still a few ambiguities
+in the API definition, and furthermore some important PostgreSQL specific
+features not accessible via DB-API, we have decided to focus mainly on one
+specific adaper: <a href="http://pypgsql.sourceforge.net/">PyPgSQL</a>. This
+should not be a problem, since it is highly portable. We have succesfully
+compiled it so far on different flavours of Linux and BSD, on different versions
+of Windows, and on Mac OS/X.<br>
+<br>
+In order to understand how to access the backend in principle, you'll have
+to understand the <a href="http://www.python.org/topics/database/DatabaseAPI-2.0.html">
+DB-API specifications</a> first. You can find a brief generic introduction
+<a href="http://www.amk.ca/python/writing/DB-API.html">here</a>.<br>
+<br>
+Next, you'll have to understand the concept of "<a href="serviceslist.html">
+services</a>" in GnuMed. Fortunately, most of the complexity behind services
+is handled by the service broker object <a href="http://savannah.gnu.org/cgi-bin/viewcvs/gnumed/gnumed/gnumed/client/python-common/gmPG.py?rev=HEAD&amp;content-type=text/vnd.viewcvs-markup">
+gmPG</a>. gmPG will also handle a lot of other complex issues such as gathering
+log in information in order to make backend connections in the first place.<br>
+<br>
+PostgreSQL is fully transactional. Transactions (sequences of database modifications)
+are only "committed" if the server is told so, otherwise the transactions
+are rolled back (changes will not be visible in the database). Rollbacks
+happen automatically if an error occurs during a transaction that may affect
+the integrity of the database, but the rollback can also be initiated programmatically.&nbsp;
+PostgreSQL "commits" happen on connection level. If a connection has several
+active cursors (which it may at any time), a "commit" will affect all of
+these cursors.<br>
+<br>
+Thus, in order not to interfere accidentally with other transactions, any
+client action that modifies the backend database MUST request a separate
+connection. However, establishing a connection is ressource intensive and
+costs time, even if it is only milliseconds on a LAN. Since most of the database
+interaction is typically read-only, where we don't have to fear transactional
+collisions, we don't need to establish extra costly connections for the client
+objecst that just want to read the database without modifying it.<br>
+<br>
+Since we want to make gnumed as resistant to programmatic errors as reasonably
+possible, we have decided to make sure that write access will not happen
+accidentally through a "read-only" connection. Unfortunately,PostgreSQL provides
+no simple way of achieving this. Our current solution is that a pseudo-user
+is created for each user; the user gets only read-only access, the pseudo-user
+gets res &amp; write access. Once again, this is handled entirely transparent
+by <a href="http://savannah.gnu.org/cgi-bin/viewcvs/gnumed/gnumed/gnumed/client/python-common/gmPG.py?rev=HEAD&amp;content-type=text/vnd.viewcvs-markup">
+gmPG</a>. If a read-only connection is requested, gmPG will return an open
+connection from a pool of shared connections. If a writeable connection is
+requested, gmPG opens a new connection under the alias of the pseudo-user
+associated with the current user.<br>
+<br>
+For a practical example, let us assume we want to access a person's demographic
+details. From the "<a href="serviceslist.html">services table</a>" we know
+that this information is available through the service "personalia". Our
+request for a read-only connection would look like this:<br>
+<br>
+<table cellpadding="15" cellspacing="1" border="1" width="100%">
+  <tbody>
+    <tr>
+      <td valign="top" bgcolor="#ccffff">
+      <pre>import gmPG<br>connection = gmPG.ConnectionPool().GetConnection("personalia")<br><br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+That's all! If we are already logged in, gmPG will use the cached login information.
+If not, gmPG will determine whether we are using a graphical user interface
+and display a nice login dialogue, otherwise it will ask for login parameters
+via command line. Then, gmPG will determine in which physical database the
+service "personalia" is located, and return that connection.<br>
+<br>
+Now, we could already start doing something with the database. We could for
+example get a list of all people who's surname begins with "H":<br>
+<br>
+<table cellpadding="15" cellspacing="1" border="1" width="100%" bgcolor="#ccffff">
+  <tbody>
+    <tr>
+      <td valign="top">
+      <pre>cursor = connection.cursor()<br>cursor.execute("Select * from v_basic_person where name like 'H%'" )<br>result = cursor.fetchall()<br></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+"result" will contain a list of "PgResultSet" objects, if there are any database
+rows matching the search criteria. The PgResultSet is a most convenient object
+wrapper which among other things allows us to address attributes by their
+names:<br>
+<br>
+<table cellpadding="15" cellspacing="1" border="1" width="100%" bgcolor="#ccffff">
+  <tbody>
+    <tr>
+      <td valign="top">
+      <pre>for&nbsp;person in result:<br>    print person['title'], person['firstnames'], person['lastnames'], person['dob']</pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Of course, in most cases you would not query the database directly like that.
+You would rather access the backend via classes derived from <a href="http://savannah.gnu.org/cgi-bin/viewcvs/gnumed/gnumed/gnumed/client/python-common/gmDbObject.py?rev=HEAD&amp;content-type=text/vnd.viewcvs-markup">
+gmDbObject</a> or at a even higher level through one of the cached database
+objects.<br>
+<br>
+</body>
+</html>
