@@ -1,12 +1,44 @@
-<!DOCTYPE webproject>
+<!DOCTYPE public "-//w3c//dtd html 4.01 strict//en" 
+		"http://www.w3.org/TR/html4/strict.dtd">
 <webproject>
-<project usePreviewPrefix="0" previewPrefix="file://" type="Local" newfiles="-//w3c//dtd html 4.01 strict//en" name="software-policy" encoding="iso 8859-1" >
+<project usePreviewPrefix="0" type="Local" previewPrefix="file://" newfiles="-//w3c//dtd html 4.01 strict//en" name="software-policy" encoding="iso 8859-1" >
 <upload/>
 <author>Dr. Horst Herb</author>
 <email>hherb@gnumed.net</email>
 <defaultDTD>-//w3c//dtd html 4.01 strict//en</defaultDTD>
-<item url="software-policy.html" />
 <templates>templates/</templates>
 <toolbars>toolbars/</toolbars>
+<item url="CVS/" />
+<item url="CVS/Entries" />
+<item url="CVS/Repository" />
+<item url="CVS/Root" />
+<item url="templates/" />
+<item url="templates/CVS/" />
+<item url="templates/CVS/Entries" />
+<item url="templates/CVS/Repository" />
+<item url="templates/CVS/Root" />
+<item url="templates/footer" />
+<item url="toolbars/" />
+<item url="toolbars/CVS/" />
+<item url="toolbars/CVS/Entries" />
+<item url="toolbars/CVS/Repository" />
+<item url="toolbars/CVS/Root" />
+<item url="acknowledgements.html" />
+<item url="conclusions.html" />
+<item url="desirable-features.html" />
+<item url="development-tools.html" />
+<item url="glossary.html" />
+<item url="good-tender.html" />
+<item url="guitools.html" />
+<item url="index.html" />
+<item url="introduction.html" />
+<item url="licenses.html" />
+<item url="makepdf.sh" />
+<item url="programming-languages.html" />
+<item url="references.html" />
+<item url="software-policy.pdf" />
+<item url="software-policy.webprj" />
+<item url="temp.ps" />
+<item url="securitytools.html" />
 </project>
 </webproject>
