@@ -1,0 +1,140 @@
+<!DOCTYPE public "-//w3c//dtd html 4.01 strict//en" 
+		"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>Inter Process Communication</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="GENERATOR" content="Quanta Plus">
+</head>
+<body>
+<h2>Inter process communication and remote procedure calls</h2>
+<hr>
+Stability and maintainability of software decreases with complexity. Complexity increases with
+the number of source code lines. In order to decrease complexity and increase stability,
+maintainability and reuseability, software is broken into modules.
+<br>A modular software architecture requires modules to communicate with each other. 
+This communication can happen at different levels: 
+<h3>Direct linking and shared memory</h3>
+<i>Analogy for non-programmers: if a program would be a book, linked modules would be chapters 
+in that book. Statically linked modules would equal to chapters bound together to a single 
+volume, dynamically linked modules would be more akin with a book broken down into separate 
+volumes. In either case, information is confined to one or more bound volumes</i>
+<p>
+In the simplest case, modules are just linked together using the same address space. 
+This linkage can happen statically or dynamically. Sharing the same address space is
+very efficient in terms of performance. However, it limits the benefit of the modules
+used to a single machine - often even to a single process on that single machine.<br>
+Static linkage produces monolithic applications with the advantage of simple maintenance: 
+the end user does not need to worry about module interdependencies. Dynamic linkage can
+be more gentle to ressources, but it makes program maintenance more demanding.<br>
+This most basic form of modularity is useful to break up complexity within the context of 
+a self-contained application, and should be used whenever performance is crucial. This 
+level of modularity is helpful for breaking down complexity and reusing the most basic
+components. It should be used for any components that could serve an independent
+purpose, like component libraries for specific algorithms and datastructures.
+</p>
+<h3>Piping and domain sockets</h3>
+<i>Analogy for non-programmers: sticking to our book analogy, think of this level of abstraction as a
+library: many books in one room, and you can freely cross-reference information as long
+as you stay in the library room.</i> 
+<p>
+The next level of modularity is achieved when independent applications communicate with each 
+other within the same machine: "pipelining", that is redirecting output of one program as input 
+for the next program is the classic Unix way. Small modules doing one simple task very well 
+are put to work in concert to achieve a complex task. This input/output redirection can happen
+via standard input / output as plain text, or via domain sockets (operating system dependent
+communication channels). Standard I/O piping can be portable, domain sockets are usually
+not. I/O piping works in non-multitasking environments, domain sockets require several
+processes running in parallel.<br> 
+This level of modularity gives independence of programming language. It should be used for 
+any component that can serve a purpose independently ("stand-alone utilities") where communication
+across a network is not neccessary.
+</p>
+<h3>Remote procedure calls and Distributed Objects</h3>
+<i>Analogy for non-programmers: this level of modularity would represent inter-library book loan:
+you are not confined to the capacity of your own library any more, but for the benefit of having
+access to greater ressources you pay a penalty by having to wait until the books arrive
+</i>
+<p>A special case of this level of modularity would be any client-server architecture, with
+or without middleware.</p>
+<p>
+The highest abstraction level of inter process communication is achieved when it becomes irrelevant 
+where within a network a module is located, in what language it is written and on what platform it runs. 
+Communicating between different machines requires some protocol to ensure that data arrives at its 
+destination as intended in a format that is understood by both parties, and often some form of authentication
+is neccessary to ensure that the recipient is the intended one too. 
+</p>
+<p>When chosing a method of inter process communication at the level of RPC or distributed objects, 
+it is important to consider 
+<ul>
+	<li>portability</li>
+	<li>openess of specifications</li>
+	<li>authentication options</li>
+	<li>performance</li>
+	<li>ease of use</li>
+</ul>
+While it is not so obvious which method to prefer in general - most methods have their merits for a limited 
+number of tasks - it is quite obvious which methods to avoid: those which are not well specified, where
+specifications are locked in with a particular vendor, and those which are not portable across platforms.
+</p>
+<p>
+An example for a project suffering from a major delay and unneccessary costs by not heeding these principles
+is the Australian GEHR: despite warnings and protests from experienced developers the GEHR group attempted
+to use the proprietary single platform (Microsoft) COM system to implement inter process communication and
+of course failed in that attempt as predicted. However, the project did not learn from previous mistakes 
+and engaged in a new project using ActiveX - yet another entirely proprietary single platform (Microsoft) 
+protocol. 
+</p>
+<p>Bearing in mind that such projects a re taxpayer funded, one has to ask why such needlessly 
+shortsighted lock-in into proprietary technology with unpredicatble future could be allowed in the 
+budgeting process. Development of such ActiveX components is yet another lost investment. With little
+consideration towards choice of tools and methods long term reusable benefits could have been 
+achieved with little to no extra effort.
+</p>
+
+<h4>Examples for RPC / distributed objects:</h4>
+<ul>
+	<li><b>XML-RPC:</b><br> a very lightweight protocol (in terms of implmentation effort). Fully portable,
+	                    open and well defined specifications, increasingly popular. Uses HTTP
+						as sole carrier protocol, and can use the very basic authentication functionality
+						of HTTP as well, but requires extra implementation effort for this.<br>
+						Secure connections can be achieved transparently via SSL, which requires
+						extra implementation effort too. Performance is not good due to HTTP and XML
+						overhead. Persistent connections can decrease connection overhead, but require
+						extra implementation effort.<br>
+						It's main benefit is in it's simplicity: free XML-RPC libraries are abundant for
+						most programming languages</li> <br>
+	<li><b>SOAP:</b><br>SOAP can be seen as an extension of XML-RPC. Messages are XML encoded
+						as well, but the carrier protocol is not specified to HTTP any more. As XML-RPC,
+						SOAP itself does not provide authentication and transport layer security
+						functionality. Microsoft is commonly blamed for having destroyed the future
+						of SOAP by manipulating the specifications in a way that they will break the
+						universality and allow vendor lock in.</li> <br>
+						
+	<li><b>CORBA</b><br>
+						</li><br>
+
+</ul>
+
+<ol>
+<li><a href="http://www.netwaysglobal.com/DCE/" target="_blank">DCE RPC for Linux 2.0.30</a></li>
+<li><a href="http://www.lcscanada.com/muscle/index.html" target="_blank">Multi User Server Client Linkage Environment (MUSCLE)</a></li>
+<li><a href="http://www.spread.org/docs/spreadoverview.html" target="_blank">The SPREAD Toolkit</a></li>
+<li><a href="http://www.cnds.jhu.edu/research/group/secure_spread/" target="_blank">Secure Spread</a></li>
+<li><a href="http://developer.kde.org/documentation/library/kdeqt/dcop.html" target="_blank">DCOP: Desktop Communications Protocol</a></li>
+<li><a href="http://xplc.sourceforge.net/doc/basic.php" target="_blank">XPLC</a></li>
+<li><a href="http://pyro.sourceforge.net/" target="_blank">Python Remote Objects</a></li>
+<li><a href="http://casbah.org/Scarab/ldo.html" target="_blank">Scarab: Lightweight Distributed Objects (LDO)</a> </li>
+<li><a href="http://www.opensoap.jp/" target="_blank">OpenSOAP Project</a></li>
+<li><a href="http://www.fnorb.org/" target="_blank">Fnorb is a CORBA 2.0 ORB for Python</a></li>
+<li><a href="http://www.prescod.net/rest/security.html" target="_blank">Some thoughts about SOAP versus REST on Security</a></li>
+<li><a href="http://ose.sourceforge.net/" target="_blank">OSE</a></li>
+</ol>
+
+ 
+
+
+
+
+</body>
+</html>
