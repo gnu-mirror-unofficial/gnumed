@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN
+		"http://www.w3.org/TR/html4/loose.dtd"">
+<html>
+<head>
+  <title>Development Tools</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="GENERATOR" content="Quanta Plus">
+</head>
+<body>
+<h2>The choice of software tools</h2>
+Software development often depends on specific software tools and third party software libraries.
+<h3>Why it matters</h3>
+The choice of tools and libraries strongly influences programming style, and thus maintainability and reusability 
+of software.<br>
+Not all developers are equally comfortable with all tools. Being able to recruit suitable
+developers is often a matter of providing the right tools. Development speed can depend
+significantly on the choice of tools. 
+Some vendors abuse software tools as a mechanism of implementing vendor lock-in even if the tools
+are used for open standard programming languages. These tools typically enforce tool-specific programming
+styles, making it very difficult to migrate to different tools for the same purpose (Example:
+MS Visual Studio).<br>
+<p>
+Licensing and source code availability of third party software libraries is a most important issue that 
+is commonly overlooked: the wrong license and unavailability of source code can render a whole project
+unreusable and unmaintainable unless significant further development costs are spent on replacing these
+third party libraries.
+</p>
+<h3>Learning from past mistakes</h3>
+It is worth mentioning that two of the major Australian software projects are said to suffer 
+difficulties with product adoption and project progress because of their choice of software tools 
+and libraries:
+<ul>
+	<li>The "Argus" project is using Borland's "JBuilder", a proprietary integrated development tool
+	which encourages use of non-standard third party libraries (namely Borland's own). This has alienated 
+	them from volunteers from the free software community who could have helped to reduce development
+	costs and accelerated the testing/debugging cycles significantly. Use of these libraries also results in lesser
+	flexibility and doubtful long term maintainability.
+	</li>
+	<li>The "GEHR" project has chosen to rely on proprietary extensions and class libraries to the
+	Eiffel language - a language which itself is not used very often in the first place, despite it's
+	doubtless merits. The initial implementation relied on a proprietary object database module ("POET")
+	which made it impossible for the community to test the product and to get used to it that way. The
+	costs associated with the chosen tools made it impossible for volunteers to join development -
+	volunteers who would have been crucial for a chronically under funded project</li>
+</ul>
+
+<h3>General requirements for software tools and other third party software</h3>
+
+It should be a general requirement that
+<ul>
+	<li>no specific development tool should be allowed unless it is replaceable with at least one other software tool of
+	which the long term availability is guaranteed. The latter applies obviously only to tools where the source 
+	code is available.<br>
+	Example: A developer may chose the proprietary "Microsoft Visual C++" as development tool as long
+	as he produces ANSI compliant C++ code and portable makefiles
+	</li>
+	<li>no third party code should be allowed unless it's license allows full transferable ownership and
+	full availability of source code. Third party libraries should not compromise portability</li>
+	<li>before any decisions are made regarding software tools and libraries, extensive research on
+	available free tools and libraries should be performed. Not knowing about existing time proven
+	free tools and libraries has wasted fortunes (Example: HeSA's decision to purchase cryptographic
+	modules despite availability of free fully tested cryptographic libraries such as OpenSSL)</li>
+</ul>
+
+<h3>Portability considerations</h3>
+<ul>
+	<li>Without very good reason, code has to be written in a portable way</li>
+	<li>Whenever features require platform specific implementation, platform specific details
+	have to be isolated via abstract interfaces so that porting can be achieved with least 
+	possible effort</li>
+	<li>Before such self written abstraction is taken into consideration, extensive research
+	should be undertaken regarding available cross platform tool kits</li>
+	<li>Wherever possible, core functionality should be implemented without any graphical user
+	interface</li>
+	<li>Wherever graphical user interfaces are necessary, the user interface part has to be
+	cleanly separated from application logic</li>
+	<li>Graphical user interfaces have to be implemented with portable interface toolkits</li>
+	<li>These requirements are recursive: they apply to any tools and libraries used</li>
+</ul>
+Portability is usually affected by the following issues:
+<ul>
+	<li>file system access</li>
+	<li>spawning and handling child / parallel processes</li>
+	<li>networking</li>
+	<li>inter-application interaction / remote procedure calls</li>
+	<li>user interface, both graphical or text mode</li>
+	<li>device interfacing (sound, 3D acceleration, printing etc)</li>
+	<li>end user software installation</li>
+</ul>
+Fortunately, most high level languages nowadays have standard libraries taking care
+of many of these issues. The general exception are graphical user interfaces - only Java 
+appears to provide a consistent portable graphical user interface through it's standard libraries.
+However, this at the expense of platform-native "look & feel" - an issue many users dislike,
+but also an issue that leads to inconsistent behaviour on most platforms when interacting with
+non-Java applications. (Example: cut & paste handling, standard dialogues for file
+selection and error handling, short cuts). The other exception is device interfacing.
+
+<h3>Available portable toolkits and third party libraries</h3>
+The following list of available free software tools is a suggestion only, to serve 
+as an example and starting point. As the list of recommended programming languages before,
+it is far from exhaustive but tries to cover the most common choices.
+<p>
+Essential criteria are:
+<ul>
+	<li>availability on as many platforms as possible. At least covering Windows, Linux and Apple
+	MacIntosh</li>
+	<li>ease of use</li>
+	<li>availability of quality documentation</li>
+	<li>royalty free distribution of developed software</li>
+	<li>source code availability to ensure long term maintainability and reusability</li>
+</ul>
+</p>
+
+</body>
+</html>
